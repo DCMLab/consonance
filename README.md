@@ -3,7 +3,7 @@
 
 ## Calculating consonance
 
-This package contains tools for estimating consonance and dissonance based on pairwise intervals within a chord. Two functions are provided: (1) for calculating consonance using intervals (minor 2nd to octave) `inverval_consonance`, and (2) using interval classes (0-6) `inverval_class_consonance`.
+This package contains tools for estimating consonance and dissonance based on pairwise intervals within a chord. Two functions are provided: (1) for calculating consonance using intervals (minor 2nd to octave) `interval_consonance`, and (2) using interval classes (0-6) `interval_class_consonance`.
 
 Both accept:
 
@@ -42,6 +42,8 @@ c. Popescu et al. (2019): 60 chords from Classical, Jazz and Avant-garde reperto
 
 (also see Peter Harrison's [inconData](https://github.com/pmcharrison/inconData) for A, B and further datasets)
 
+Here, we also scale ratings, where -1 is the most dissonant value on the available rating scale, and +1 the most consonant.
+
 
 ```python
 import pandas as pd
@@ -79,8 +81,7 @@ optimise_interval_weights(pitches, ratings, agg_method="sum")
 Different sets of weights can also be optimised based on the conditional inclusion/exclusion of interval(s). Intervals to exclude can be supplied as a list using `exclude_ivls`. Weights for all combinations will be optimised.
 
 ```python
-weights_8 = optimise_interval_weights(pitches, ratings, exclude_ivls=[8], agg_method="sum")
-
+weights_ex8 = optimise_interval_weights(pitches, ratings, exclude_ivls=[8], agg_method="sum")
 # [[-0.3856, -0.0767, -0.0108,  0.1334, 0.1256, -0.1476, 0.1439,    None,  0.0080, -0.1758, -0.1884, 0.2332],
 #  [-0.3777, -0.0068, -0.0232, -0.0548, 0.1900, -0.0887, 0.1709, -0.0933, -0.0852, -0.1306, -0.1962, 0.3980]]
 ```
@@ -88,10 +89,10 @@ weights_8 = optimise_interval_weights(pitches, ratings, exclude_ivls=[8], agg_me
 Weights supplied as list of lists can be used in the consonance function. Weights lists must be supplied for all combinations of excluded or included intervals. Excluded weights have value of `None`.
 
 ```python
-interval_consonance(chord1, weights_8, agg_method="sum")
+interval_consonance(chord1, weights_ex8, agg_method="sum")
 # 0.2664685521562091
 
-interval_consonance(chord2, weights_8, agg_method="sum")
+interval_consonance(chord2, weights_ex8, agg_method="sum")
 # -0.8479383716037261
 ```
 
