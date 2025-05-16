@@ -1,5 +1,5 @@
 import numpy as np
-from consonance.consonance import exclusion_combinations, get_octave_intervals, interval_class, count
+from consonance import exclusion_combinations, get_octave_intervals, interval_class, count
 
 
 def optimise_interval_weights(pitches_lst, ratings, exclude_ivls=[], agg_method="type"):
