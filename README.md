@@ -20,7 +20,8 @@ from consonance.consonance import interval_consonance
 chord1 = [60, 64, 67]  # i.e., a C major chord
 chord2 = [60, 61, 62]  # a dissonant cluster chord
 
-binary_weights = [-1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1]
+#                 m2  M2  m3  M3  P4  TT  P5  m6  M6  m7  M7  P8
+binary_weights = [-1, -1,  1,  1,  1, -1,  1,  1,  1, -1, -1,  1]
 
 interval_consonance(chord1, binary_weights, agg_method="sum")
 # 3.0
@@ -29,18 +30,29 @@ interval_consonance(chord2, binary_weights, agg_method="sum")
 # -3.0
 ```
 
+We can do the same using interval classes:
+
+```python
+#                     P1/P8  m2/M7  M2/m7  m3/M6  M3/m6  P4/P5  TT
+binary_class_weights = [1,    -1,    -1,     1,     1,     1,   -1]
+
+interval_class_consonance(chord1, binary_class_weights, agg_method="sum")
+# 3.0
+```
+
 
 ## Optimising weights
 
 Given a dataset of chords and ratings of consonance, optimal weights can be obtained. Again functions are provided to optimise weights for intervals (`optimise_interval_weights`) and interval classes (`optimise_interval_class_weights`).
 
 The three datasets using in this paper are given in `./data`:
+<ol type="A">
+    <li>Bowling et al. (2018): 298 chords (all 2, 3 and 4 combinations in one octave)</li>
+    <li>Johnson-Laird et al. (2012): 55 three-note chords and 43 four-note chords</li>
+    <li>Popescu et al. (2019): 60 chords from Classical, Jazz and Avant-garde repertoire</li>
+</ol>
 
-a. Bowling et al. (2018): 298 chords (all 2, 3 and 4 combinations in one octave)
-b. Johnson-Laird et al. (2012): 55 three-note chords and 43 four-note chords
-c. Popescu et al. (2019): 60 chords from Classical, Jazz and Avant-garde repertoire
-
-(also see Peter Harrison's [inconData](https://github.com/pmcharrison/inconData) for A, B and further datasets)
+(see Peter Harrison's [inconData](https://github.com/pmcharrison/inconData) for A, B and further datasets; see [source](https://osf.io/dj8w9/) for C)
 
 Here, we also scale ratings, where -1 is the most dissonant value on the available rating scale, and +1 the most consonant.
 
