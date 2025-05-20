@@ -33,6 +33,8 @@ interval_consonance(chord2, binary_weights, agg_method="sum")
 We can do the same using interval classes:
 
 ```python
+from consonance.consonance import interval_class_consonance
+
 #                     P1/P8  m2/M7  M2/m7  m3/M6  M3/m6  P4/P5  TT
 binary_class_weights = [1,    -1,    -1,     1,     1,     1,   -1]
 
