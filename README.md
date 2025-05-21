@@ -111,6 +111,29 @@ interval_consonance(chord2, weights_ex8, agg_method="sum")
 ```
 
 
+## Pre-computed weights
+
+This package also contains all the weights given in Tables 1 (`interval_weights`) and 4 (`interval_class_weights`) of the paper. They can be imported as follows:
+
+```python
+from consonance.interval_weights import simple_type
+
+simple_type
+# [-1.9015876909779474,
+#  -0.299102543610847,
+#  -0.028932965712551884,
+#  0.2573540145134221,
+#  0.6162669639189333,
+#  -0.5822948481506369,
+#  0.676379372110411,
+#  -0.3386279468563853,
+#  -0.14221773986822045,
+#  -0.7119604574442283,
+#  -0.8988249813772922,
+#  1.0092873128124524]
+```
+
+
 ## References
 
 Bowling, D. L., Purves, D., & Gill, K. Z. (2018). Vocal similarity predicts the relative attraction of musical chords. *Proceedings of the National Academy of Sciences*, *115*(1), 216–221. [https://doi.org/10.1073/pnas.1713206115](https://doi.org/10.1073/pnas.1713206115)
